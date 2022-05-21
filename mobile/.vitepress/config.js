@@ -20,10 +20,6 @@ module.exports = {
     "text": "引导",
     "items": [
       {
-        "text": ".DS_Store",
-        "link": "/docs/.DS_Store/"
-      },
-      {
         "text": "JS",
         "link": "/docs/JS/"
       },
@@ -75,6 +71,10 @@ module.exports = {
     "link": "/docs/JS/index",
     "children": [
       {
+        "text": "Array",
+        "link": "/docs/JS/Array"
+      },
+      {
         "text": "Class",
         "link": "/docs/JS/Class"
       },
@@ -91,6 +91,10 @@ module.exports = {
         "link": "/docs/JS/EventLoop"
       },
       {
+        "text": "Function",
+        "link": "/docs/JS/Function"
+      },
+      {
         "text": "Map-Set",
         "link": "/docs/JS/Map-Set"
       },
@@ -101,6 +105,10 @@ module.exports = {
       {
         "text": "Promise",
         "link": "/docs/JS/Promise"
+      },
+      {
+        "text": "RegExp",
+        "link": "/docs/JS/RegExp"
       },
       {
         "text": "Sub",
@@ -115,52 +123,40 @@ module.exports = {
         "link": "/docs/JS/Underscore"
       },
       {
-        "text": "代码质量",
-        "link": "/docs/JS/代码质量"
+        "text": "Cache",
+        "link": "/docs/JS/cache"
       },
       {
-        "text": "内存",
-        "link": "/docs/JS/内存"
+        "text": "Clone",
+        "link": "/docs/JS/clone"
       },
       {
-        "text": "函数",
-        "link": "/docs/JS/函数"
+        "text": "Closure",
+        "link": "/docs/JS/closure"
       },
       {
-        "text": "原型与继承",
-        "link": "/docs/JS/原型与继承"
+        "text": "Code-quality",
+        "link": "/docs/JS/code-quality"
       },
       {
-        "text": "常用函数",
-        "link": "/docs/JS/常用函数"
+        "text": "Common-fn",
+        "link": "/docs/JS/common-fn"
       },
       {
-        "text": "常用方法",
-        "link": "/docs/JS/常用方法"
+        "text": "Common-methods",
+        "link": "/docs/JS/common-methods"
       },
       {
-        "text": "数组",
-        "link": "/docs/JS/数组"
+        "text": "Module",
+        "link": "/docs/JS/module"
       },
       {
-        "text": "模块化",
-        "link": "/docs/JS/模块化"
+        "text": "Prototype-inherit",
+        "link": "/docs/JS/prototype-inherit"
       },
       {
-        "text": "正则",
-        "link": "/docs/JS/正则"
-      },
-      {
-        "text": "深浅拷贝",
-        "link": "/docs/JS/深浅拷贝"
-      },
-      {
-        "text": "类型",
-        "link": "/docs/JS/类型"
-      },
-      {
-        "text": "闭包",
-        "link": "/docs/JS/闭包"
+        "text": "Type",
+        "link": "/docs/JS/type"
       }
     ]
   },
@@ -169,16 +165,16 @@ module.exports = {
     "link": "/docs/LeetCode/index",
     "children": [
       {
-        "text": "X数之和",
-        "link": "/docs/LeetCode/x数之和"
+        "text": "Link",
+        "link": "/docs/LeetCode/link"
       },
       {
-        "text": "移除元素",
-        "link": "/docs/LeetCode/移除元素"
+        "text": "Remove-element",
+        "link": "/docs/LeetCode/remove-element"
       },
       {
-        "text": "链表",
-        "link": "/docs/LeetCode/链表"
+        "text": "X-number-sum",
+        "link": "/docs/LeetCode/x-number-sum"
       }
     ]
   },
@@ -201,8 +197,8 @@ module.exports = {
         "link": "/docs/TS/Class"
       },
       {
-        "text": "类型[断言-守卫]",
-        "link": "/docs/TS/类型[断言-守卫]"
+        "text": "TypeAsserts-Guard",
+        "link": "/docs/TS/TypeAsserts-Guard"
       }
     ]
   },
@@ -215,8 +211,8 @@ module.exports = {
         "link": "/docs/Vue/Base"
       },
       {
-        "text": "组件",
-        "link": "/docs/Vue/组件"
+        "text": "Component",
+        "link": "/docs/Vue/Component"
       }
     ]
   },
