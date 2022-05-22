@@ -2,7 +2,7 @@ const http = require("http");
 const crypto = require("crypto");
 const { spawn } = require("child_process");
 // let sendMail = require('./sendMail');
-const SECRET = "Gxsnay220525";
+const SECRET = "Gxsnay220705";
 function sign(body) {
   // hash 算法 解析出来签名 和 密钥 比对
   return `sha1=${crypto.createHmac("sha1", SECRET).update(body).digest("hex")}`;
