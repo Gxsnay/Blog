@@ -59,7 +59,7 @@
  * @return {number[]}
  */
 var twoSum = function (nums, target) {
-  let len = nums.length;
+  const len = nums.length;
   for (let i = 0; i < len; i++) {
     for (let j = i + 1; j < len; j++) {
       if (nums[i] + nums[j] === target) {
@@ -78,14 +78,14 @@ var twoSum = function (nums, target) {
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    let len = nums.length;
-    for (let i = 0; i < len; i++) {
-      let nums_j = target - nums[i];
-      let j = nums.indexOf(nums_j);
-      if (j !== -1 && i !== j) { // 判断边界~
-        return [i, j];
-      }
+  const len = nums.length;
+  for (let i = 0; i < len; i++) {
+    let nums_j = target - nums[i];
+    let j = nums.indexOf(nums_j);
+    if (j !== -1 && i !== j) { // 判断边界~
+      return [i, j];
     }
+  }
 };
 ```
 
@@ -97,16 +97,16 @@ var twoSum = function(nums, target) {
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    let len = nums.length;
-    let obj = {};
-    for (let i = 0; i < len; i++) {
-      let nums_j = target - nums[i];
-      if (obj[nums_j] || obj[nums_j] === 0) {
-        return [i, obj[nums_j]];
-      } else {
-        obj[nums[i]] = i;
-      }
-    };
+  const len = nums.length;
+  const obj = {};
+  for (let i = 0; i < len; i++) {
+    let nums_j = target - nums[i];
+    if (obj[nums_j] || obj[nums_j] === 0) {
+      return [i, obj[nums_j]];
+    } else {
+      obj[nums[i]] = i;
+    }
+  };
 };
 ```
 
@@ -118,17 +118,17 @@ var twoSum = function(nums, target) {
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    let len = nums.length;
-    let obj = {};
-    for (let i = 0; i < len; i++) {
-      obj[nums[i]] = i;
-    };
-    for (let i = 0; i < len; i++) {
-      let nums_j = target - nums[i];
-      if (obj[nums_j] && obj[nums_j] !== i) {
-          return [i, obj[nums_j]];
-      }
-    };
+  const len = nums.length;
+  const obj = {};
+  for (let i = 0; i < len; i++) {
+    obj[nums[i]] = i;
+  };
+  for (let i = 0; i < len; i++) {
+    let nums_j = target - nums[i];
+    if (obj[nums_j] && obj[nums_j] !== i) {
+      return [i, obj[nums_j]];
+    }
+  };
 };
 ```
 
