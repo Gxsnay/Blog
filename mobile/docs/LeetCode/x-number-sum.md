@@ -297,12 +297,14 @@ var threeSum = function (nums) {
 
   return res;
 };
-// 也可以利用对象去重
+// 也可以利用对象去重 - 虽然这道题不适用。
 function dup(arr) {
   let obj = {};
   arr.forEach((item) => {
     obj[item] = item;
   });
+  // 😯 - 这里返回 Object.values 是为了保证 value 的类型。
+  // 如果使用 Object.keys 则 return 后数组内都为 字符串类型了。
   return Object.values(obj);
 }
 ```
