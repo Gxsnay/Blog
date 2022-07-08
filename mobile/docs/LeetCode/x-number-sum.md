@@ -404,7 +404,7 @@ var fourSum = function (nums, target) {
     const min1 = nums[i] + nums[i + 1] + nums[i + 2] + nums[i + 3];
     if (min1 > target) break;
     const max1 = nums[i] + nums[len - 3] + nums[len - 2] + nums[len - 1];
-    // 跳过本次不跳出 是因为 nums[i] 是依次递增的~
+    // 跳过本次不跳出循环 是因为 nums[i] 是依次递增的~
     if (max1 < target) continue;
 
     for (let j = i + 1; j < len - 2; j++) {
