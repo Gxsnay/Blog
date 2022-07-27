@@ -11,6 +11,7 @@ let baseURL;
 /**
  * 目前只有 开发环境 / 生产环境
  * 代理环境在 nginx 配置~
+ *  - 也可以根据 process.env.NODE_ENV 区分 开发/生产 环境
  */
 if (/localhost:*/.test(currentUrl)) {
   baseURL = process.env.REACT_APP_DEV_BASE_URL;
