@@ -8,8 +8,14 @@ export const Footer: FC = () => {
   return (
     <FooterBox>
       <UserNoSelect>
-        Copyright © {sApp.siteTag} {new Date().getFullYear()} | Powered by Hux Theme
+        Copyright © {sApp.siteTag} {new Date().getFullYear()} | Powered by Hux
+        Theme
       </UserNoSelect>
+      <div>
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer">
+          京ICP备2022007965号-1
+        </a>
+      </div>
     </FooterBox>
   );
 };
@@ -20,4 +26,6 @@ const FooterBox = styled(FlexBlock)`
   padding-bottom: 5rem;
   font-size: 1.4rem;
   color: #666;
+  flex-direction: column;
+  line-height: 26px;
 `;
