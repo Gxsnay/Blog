@@ -24,6 +24,7 @@ export default class SApp {
   @observable siteTag = "Gxsnay";
   @observable loading = false;
   @observable activeTag = sessionStorage.getItem("activeTag") || "Home";
+  @observable searchVal = "";
   @observable headerStyle = {
     headerTitle: this.siteTag,
     headerDesc: "Keep on going never give up",
@@ -38,6 +39,9 @@ export default class SApp {
   };
   @action CHANGE_ACTIVE_TAG: (tag: string) => void = (tag) => {
     this.activeTag = tag;
+  };
+  @action CHANGE_SEARCH_VAL: (val: string) => void = (val) => {
+    this.searchVal = val;
   };
   @action CHANGE_HEADER_STYLE: (
     headerTag: string,

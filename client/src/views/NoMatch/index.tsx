@@ -38,6 +38,7 @@ const NoMatchBox = styled(FlexBlock)`
   min-height: 20rem;
   flex-direction: column;
   font-weight: bold;
+  width: 80rem;
 `;
 const LinkJump = styled(Link)`
   &:hover {

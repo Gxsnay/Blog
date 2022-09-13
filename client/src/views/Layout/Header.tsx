@@ -5,8 +5,10 @@ import { useDOMScroll } from "utils/useCallback";
 import styled from "@emotion/styled";
 import { FlexBlock, UserNoSelect } from "style/common";
 import { useStores } from "store";
-import { Tag } from "antd";
+import { Tag, Input } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
 import { observer } from "mobx-react";
+import EventBus from "utils/eventBus";
 
 export const Header: FC = observer(() => {
   const navigate = useNavigate();
@@ -72,11 +74,42 @@ export const Header: FC = observer(() => {
     return () => clearInterval(timeout);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrolllTop]);
-  const handleClickLogo: () => void = () => {
-    navigate("/home");
+  const handleSkipHome: (urlParams?: string) => void = (urlParams = "") => {
+    navigate("/home" + urlParams);
     toggleNavActive({ tag: "Home" });
   };
+  const handleClickLogo = () => {
+    handleSkipHome();
+  };
 
+  const [searchStatus, setSearchStatus] = useState(false);
+  const searchGesture = (type = "leave") => {
+    if (sApp.searchVal.trim()) {
+      setSearchStatus(true);
+      return;
+    }
+    setSearchStatus(type === "leave" ? false : true);
+  };
+  const searchValChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    sApp.CHANGE_SEARCH_VAL(e.target.value || "");
+  };
+  const handleSearch = () => {
+    if (!searchStatus) return false;
+    const searchStr = sApp.searchVal.trim()
+      ? `?search=${sApp.searchVal.trim()}`
+      : "";
+    handleSkipHome(searchStr);
+    EventBus.emit("fetchBlogList", sApp.searchVal.trim());
+  };
+  const searchSuffix = (
+    <SearchOutlined
+      style={{
+        fontSize: 16,
+        color: "#42b983",
+      }}
+      onClick={handleSearch}
+    />
+  );
   return (
     <HeaderBox headerBgImg={sApp.headerStyle?.headerImg}>
       <HeaderMain>
@@ -101,21 +134,43 @@ export const Header: FC = observer(() => {
         <NavTitle fontColor={navModel.font} onClick={handleClickLogo}>
           {sApp.siteTag}
         </NavTitle>
-        <Nav>
-          {navList.map((_nav) => {
-            return (
-              <NavItem
-                key={_nav.tag}
-                fontColor={navModel.font}
-                actived={sApp.activeTag === _nav.tag}
+        <NavMain>
+          <NavSearch>
+            {
+              <NavSearchMain
+                searchStatus={searchStatus}
+                onMouseEnter={() => searchGesture("enter")}
+                onMouseLeave={() => searchGesture("leave")}
               >
-                <Link to={`${_nav.link}`} onClick={() => toggleNavActive(_nav)}>
-                  {_nav.title}
-                </Link>
-              </NavItem>
-            );
-          })}
-        </Nav>
+                <Input
+                  placeholder="搜索相关内容"
+                  suffix={searchSuffix}
+                  onChange={searchValChange}
+                  onPressEnter={handleSearch}
+                  value={sApp.searchVal}
+                />
+              </NavSearchMain>
+            }
+          </NavSearch>
+          <Nav>
+            {navList.map((_nav) => {
+              return (
+                <NavItem
+                  key={_nav.tag}
+                  fontColor={navModel.font}
+                  actived={sApp.activeTag === _nav.tag}
+                >
+                  <Link
+                    to={`${_nav.link}`}
+                    onClick={() => toggleNavActive(_nav)}
+                  >
+                    {_nav.title}
+                  </Link>
+                </NavItem>
+              );
+            })}
+          </Nav>
+        </NavMain>
       </NavBox>
     </HeaderBox>
   );
@@ -185,6 +240,36 @@ const NavTitle = styled.div<{
   font-size: 2.6rem;
   cursor: pointer;
   color: ${({ fontColor }) => fontColor || "#fff"};
+`;
+const NavMain = styled.div`
+  display: flex;
+  align-items: center;
+`;
+const NavSearch = styled.div``;
+const NavSearchMain = styled.div<{
+  searchStatus?: boolean;
+}>`
+  .ant-input-affix-wrapper {
+    font-size: 16px;
+    width: ${({ searchStatus }) => (searchStatus ? "180px" : "35px")};
+    height: 35px;
+    transition: ${({ searchStatus }) => (searchStatus ? "width .8s" : "")};
+    background-color: #fff;
+    border-color: #ccc;
+    border-radius: ${({ searchStatus }) => (searchStatus ? "20px" : "50%")};
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: ${({ searchStatus }) => (searchStatus ? "" : "center")};
+    cursor: ${({ searchStatus }) => (searchStatus ? "pointer" : "pointer")};
+    margin: 5px 10px 0 0;
+    input {
+      font-size: 14px;
+    }
+    .ant-input-suffix {
+      margin-left: ${({ searchStatus }) => (searchStatus ? "4px" : "0")};
+    }
+  }
 `;
 const Nav = styled.div`
   display: flex;

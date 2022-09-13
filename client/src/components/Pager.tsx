@@ -28,7 +28,7 @@ export const Pager = (props: {
 };
 
 const PagerBox = styled.div`
-  padding: 2rem 2rem 2rem 1rem;
+  padding: 6rem 2rem 2rem 1rem;
 `;
 const PageItem = styled.div`
   border: 1px solid #999;

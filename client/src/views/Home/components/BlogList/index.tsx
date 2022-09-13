@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import styled from "@emotion/styled";
 import { Divider, Empty, Tag } from "antd";
 import { getBlogList } from "apis/blog";
@@ -8,9 +8,18 @@ import dayjs from "dayjs";
 import { FireOutlined } from "@ant-design/icons";
 import { useStores } from "store";
 import { Pager } from "components/Pager";
+import EventBus from "utils/eventBus";
 
 export const BlogList: FC = () => {
   const navigate = useNavigate();
+  const routes = useLocation();
+  const { search = "" } = routes;
+  const searchVal =
+    search
+      ?.replace("?", "")
+      ?.split("&")
+      ?.find((_item) => /search/.test(_item))
+      ?.split("=")[1] || "";
 
   const [blogList, setBlogList] = useState<IBlogItem[]>([]);
   const [itemActive, setItemActive] = useState(-1);
@@ -20,9 +29,18 @@ export const BlogList: FC = () => {
     total: 0,
   });
   const { sApp } = useStores();
-  const getData: (isInit?: boolean) => void = async (isInit = false) => {
-    if (isInit) sApp.CHANGE_LOADING(true);
+  if (searchVal) {
+    sApp.CHANGE_SEARCH_VAL(decodeURI(searchVal));
+  } else {
+    sApp.CHANGE_SEARCH_VAL("");
+  }
+  const getData: (isInit?: boolean, search?: string) => void = async (
+    isInit = false,
+    search = ""
+  ) => {
+    if (isInit || search.trim()) sApp.CHANGE_LOADING(true);
     const _request = {
+      search: search.trim() || "",
       pageSize: pagerParams.pageSize,
       pageNo: pagerParams.pageNo,
     };
@@ -33,7 +51,12 @@ export const BlogList: FC = () => {
   };
 
   useEffect(() => {
-    getData(true);
+    if (!search) getData(true);
+    EventBus.off("fetchBlogList");
+    EventBus.on("fetchBlogList", (search: string) => {
+      setPagerParams({ ...pagerParams, pageNo: 1 });
+      getData(false, search);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -59,7 +82,7 @@ export const BlogList: FC = () => {
   };
 
   useEffect(() => {
-    getData();
+    getData(false, sApp.searchVal);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pagerParams.pageNo]);
 
