@@ -32,10 +32,6 @@ module.exports = {
             link: "/docs/Node/",
           },
           {
-            text: "Note",
-            link: "/docs/Note/",
-          },
-          {
             text: "React",
             link: "/docs/React/",
           },
@@ -46,6 +42,10 @@ module.exports = {
           {
             text: "Vue",
             link: "/docs/Vue/",
+          },
+          {
+            text: "随笔",
+            link: "/docs/随笔/",
           },
         ],
       },
@@ -188,16 +188,6 @@ module.exports = {
         children: [],
       },
       {
-        text: "Note",
-        link: "/docs/Note/index",
-        children: [
-          {
-            text: "Set-forEach",
-            link: "/docs/Note/Set-forEach",
-          },
-        ],
-      },
-      {
         text: "React",
         link: "/docs/React/index",
         children: [],
@@ -227,6 +217,16 @@ module.exports = {
           {
             text: "Component",
             link: "/docs/Vue/Component",
+          },
+        ],
+      },
+      {
+        text: "随笔",
+        link: "/docs/随笔/index",
+        children: [
+          {
+            text: "Set-forEach",
+            link: "/docs/随笔/Set-forEach",
           },
         ],
       },
