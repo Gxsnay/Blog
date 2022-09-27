@@ -223,7 +223,12 @@ module.exports = {
       {
         text: "随笔",
         link: "/docs/随笔/index",
-        children: [],
+        children: [
+          {
+            text: "Set-forEach",
+            link: "/docs/随笔/Set-forEach",
+          },
+        ],
       },
     ],
   },
